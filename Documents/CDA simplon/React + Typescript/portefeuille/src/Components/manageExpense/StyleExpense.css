@@ -1,0 +1,57 @@
+:root {
+    --primary-color: #00b4d8;
+}
+
+h2 {
+color: var(--primary-color);
+font-size: 2em;
+margin-bottom: 30px;
+}
+
+.Period {
+    width: 500px;
+    justify-content: space-between;
+}
+
+.Expenses {
+    width: 500px;
+}
+
+.Expenses-Add {
+    justify-content: space-between;
+}
+
+.Expenses-Input, #selectedOption {
+    width: 300px!important;
+}
+
+.Expenses-Input-current {
+    width: 265px!important;
+}
+
+.Btn {
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    width: 180px;
+}
+
+.Btn:hover {
+    background-color: var(--primary-color);
+}
+
+.input-group-text {
+    height: 35px;
+}
+
+.Input-space, #selectedOption {
+    margin-bottom: 20px;
+}
+
+li {
+    list-style: none;
+}
+
+.Montant {
+    font-weight: 700;
+}

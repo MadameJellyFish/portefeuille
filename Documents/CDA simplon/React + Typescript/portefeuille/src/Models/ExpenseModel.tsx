@@ -5,3 +5,8 @@ export interface Expense
     description: string;
     date: Date;
 };
+
+export interface AddExpenseType
+{
+    onCreateExpense: (data: Expense) => void;
+};
