@@ -20,33 +20,46 @@ const ExpenseList = () => {
         { id:13, amount: 4, description: 'Frais de stationnement en centre-ville', date:new Date(2024,9,22) },
     ]);
 
+    /**
+     * 
+     * @param data Cette méthode permettre d'ajouter une nouvelle expense dans la list d'expenses
+     */
     const addExpense = (data: Expense): void => {
         setExpenses([...expenses, data]);
     }
 
     return (
         <div>
-            <h2>Liste des Dépenses</h2>
-            <ul>
-                {
-                    expenses && expenses.map((expense) => (
-                        <li key={expense.id}>
-                            <>  
-                                <div className='d-flex'>
-                                    <span>&#128176;</span>
-                                    <div className=''>
-                                        <p>{expense.date.toLocaleDateString()}</p>
-                                        <div className='d-flex f-row'>
-                                            <p>{expense.description}</p>
-                                            <p>Montant: <span className='Montant'>{expense.amount}<span>€</span></span></p>
+            <div className='Section'>
+                <h2>Enregistrement des Dépenses</h2>
+                <AddExpense onCreateExpense={addExpense}/>
+            </div>
+            <div className='Section'>
+                <h2>Liste des Dépenses</h2>
+                <div className='Container-Expense-List'>
+                    <ul>
+                        {
+                            expenses && expenses.map((expense) => (
+                                <li key={expense.id} className='Expense-List'>
+                                    <>  
+                                        <div className='Expense-List-Item d-flex'>
+                                            <span>&#128176;</span>
+                                            <div className='Expense-List'>
+                                                <p>{expense.date.toLocaleDateString()}</p>
+                                                <div className='Expense-List-Montant d-flex f-row'>
+                                                    <p className='Expense-List-Description'>{expense.description}</p>
+                                                    <div className='Expense-List-Line'></div>
+                                                    <p><span className='Currency'>{expense.amount}<span>€</span></span></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </>
-                        </li>
-                    ))
-                }
-            </ul>
+                                    </>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 }

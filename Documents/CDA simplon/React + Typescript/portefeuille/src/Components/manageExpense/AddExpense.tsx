@@ -34,7 +34,7 @@ const AddExpense: React.FC<AddExpenseType> = ({ onCreateExpense }) => {
             <div className='Expenses-Add form-group d-flex f-row'>
                 <label htmlFor='amount'>Amount</label>
                 <div className='d-flex f-row'>
-                    <input className='Expenses-Input-current Input-space input-group-text' id='amount' name='amount' value={newExpense.amount} onChange={handleChange}  />
+                    <input className='Expenses-Input-Currency Input-space input-group-text' id='amount' name='amount' value={newExpense.amount} onChange={handleChange}  />
                     <span className="input-group-text Currency">€</span>
                 </div>
             </div>
