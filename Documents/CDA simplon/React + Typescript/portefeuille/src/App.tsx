@@ -12,8 +12,7 @@ function App() {
         <h1>Mon Portefeuille Virtuel</h1>
       </header>
       <main>
-        <div className='px-5 mx-5 Content'>
-          
+        <div className='px-5 mx-5 Content'>   
           <ExpenseSummary />
         </div>
       </main>

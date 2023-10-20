@@ -32,15 +32,15 @@ const AddExpense: React.FC<AddExpenseType> = ({ onCreateExpense }) => {
     return (
         <div className='Expenses'>
             <div className='Expenses-Add form-group d-flex f-row'>
-                <label htmlFor='amount'>Amount</label>
+                <label htmlFor='amount'>Montant</label>
                 <div className='d-flex f-row'>
-                    <input className='Expenses-Input-Currency Input-space input-group-text' id='amount' name='amount' value={newExpense.amount} onChange={handleChange}  />
+                    <input className='Expenses-Input-Currency Input-space input-group-text No-Outline' id='amount' name='amount' value={newExpense.amount} onChange={handleChange}  />
                     <span className="input-group-text Currency">€</span>
                 </div>
             </div>
             <div className='Expenses-Add d-flex f-row'>
                 <label htmlFor="description">Description</label>
-                <input className='Expenses-Input Input-space input-group-text' id='description' name='description' value={newExpense.description} onChange={handleChange}  />
+                <input className='Expenses-Input Input-space input-group-text No-Outline' id='description' name='description' value={newExpense.description} onChange={handleChange}  />
             </div>
             <div className='d-flex justify-content-end'>
                 <button onClick={handleAddExpense} className='Btn btn'>Ajouter</button>    
