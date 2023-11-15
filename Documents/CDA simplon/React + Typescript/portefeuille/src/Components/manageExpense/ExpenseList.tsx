@@ -49,34 +49,47 @@ const ExpenseList = () => {
         filterExpenses();
     };
 
+    //quand selectedDate change
     useEffect(() => {
         console.log("Selected Date:", selectedDate);
-
+        
+       //affiche les filtres de depenses par raport à la date selectioné
         const filteredExpenses = getFilteredExpenses();
+
+        //actualise la list des expenses filtrés
         setFilteredListExpenses(filteredExpenses);
         console.log("Filtered Expenses:", filteredExpenses);
     }, [selectedDate, expenses]);
 
+    /**
+     * 
+     * @returns cet function affiche les filtres de depenses par raport à la date selectioné
+     */
     const getFilteredExpenses = () => {
         if (!selectedDate) {
             return expenses;
         }
 
+        //Si une date est selectioné elle devient une chaine de charactere
         const formattedSelectedDate = selectedDate.toDateString();
         console.log("selectedDate:", selectedDate);
         console.log("expenses:", expenses);
         console.log("filteredExpenses:", filteredExpenses); 
 
+        //crée une nouvelle array avec les elements qui pasent la condición especificada
         return expenses.filter((expense) => {
             const formattedExpenseDate = expense.date.toDateString();
+            //Pour pouvoir comparer les dates avec une même format
             return formattedExpenseDate === formattedSelectedDate;
         });
     };
 
+    //Retourn les dates filtres
     const filteredExpenses = expenses.filter((expense) => {
         return selectedDate && expense.date.toDateString() === selectedDate.toDateString();
     });
 
+    //apelle la function getFilteredExpenses qui filtre les dates et les stock
     const filterExpenses = () => {
         const filteredExpenses = getFilteredExpenses();
         setFilteredListExpenses(filteredExpenses);
@@ -108,13 +121,12 @@ const ExpenseList = () => {
                 </div>
                 <div className='Period d-flex justify-content-end'>
                     <button className='Btn btn' onClick={() => filterExpenses()}>Afficher</button>
-                </div>
-                
+                </div>          
             </div>
             <div className='Section'>
                 <h2>Liste des Dépenses</h2>
-                <div className='Container-Expense-List'>   
-                    {/* {selectedDate ? (
+                <div className='Container-Expense-List mb-5'>   
+                    {selectedDate ? (
                         <ul>
                             {
                                 filteredExpenses.map((expense) => (
@@ -125,7 +137,7 @@ const ExpenseList = () => {
                                 ))
                             }
                         </ul>
-                    ) : ( */}
+                    ) : (
                         <ul>
                             {
                                 expenses && expenses.map((expense) => (
@@ -150,11 +162,13 @@ const ExpenseList = () => {
                                 ))
                             }
                         </ul>
-                    {/* )}  */}
-                    <div className='d-flex f-row Total my-4'>
-                        <p className='me-5'>Total</p>
-                        <span >{totalAmount}<span>€</span></span>
-                    </div>
+                     )}
+                     {!selectedDate && (
+                        <div className='d-flex f-row Total my-4'>
+                            <p className='me-5'>Total</p>
+                            <span>{totalAmount}€</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
