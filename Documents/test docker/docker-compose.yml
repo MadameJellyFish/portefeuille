@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: symfony_api
+    ports:
+      - "8000:8000" # Redirige le port 8000 du conteneur vers le port 8000 de l'hôte
+    volumes:
+      - .:/var/www/html # Monte le répertoire local dans /var/www/html du conteneur
+    networks:
+      - symfony  # Utilise le réseau défini pour les communications inter-conteneurs
+    depends_on:
+      - db  # Indique que le conteneur `app` dépend du conteneur `db`
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+
+  db:
+    image: postgres:latest
+    container_name: symfony_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}  # Définit l'utilisateur PostgreSQL (config dans le .env)
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}  # Définit le mot de passe PostgreSQL (config dans le .env)
+      POSTGRES_DB: ${POSTGRES_DB}  # Définit la base de données PostgreSQL (config dans le .env)
+    ports:
+      - "6442:5432"  # Redirige le port 5432 du conteneur vers le port 6442 de l'hôte (5432 ne marche pas sur mon poste)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - symfony  # Utilise le réseau défini pour les communications inter-conteneurs
+
+volumes:
+  postgres_data:
+
+networks:
+  symfony:
+    driver: bridge
