@@ -1,0 +1,21 @@
+# Dockerfile d'initialisation pour créer le projet Symfony
+
+# Utiliser une image PHP CLI avec Composer et Symfony CLI
+FROM php:8.2-cli
+
+# Installer les extensions PHP nécessaires et autres dépendances
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    git \
+    unzip \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# Installer Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Installer Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
+
+# Définir le répertoire de travail
+WORKDIR /app
