@@ -22,8 +22,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
     private ?Uuid $id = null;
 
-    #[ORM\Column(length: 36)]
-    private ?string $uuid = null;
+    #[ORM\Column(length: 180)]
+    private ?string $email = null;
 
     /**
      * @var list<string> The user roles
@@ -42,14 +42,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getUuid(): ?string
+    public function getEmail(): ?string
     {
-        return $this->uuid;
+        return $this->email;
     }
 
-    public function setUuid(string $uuid): static
+    public function setEmail(string $email): static
     {
-        $this->uuid = $uuid;
+        $this->email = $email;
 
         return $this;
     }
@@ -61,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->uuid;
+        return (string) $this->email;
     }
 
     /**
