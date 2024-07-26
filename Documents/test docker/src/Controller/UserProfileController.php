@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class UserProfileController extends AbstractController
 {
-    #[Route('/user/profile', name: 'app_user_profile_get', methods: ['GET'], format: 'json')]
+    #[Route('/api/profile', name: 'user_profile_get', methods: ['GET'], format: 'json')]
     public function getProfile(UserHandler $userHandler): JsonResponse
     {
         $user = $userHandler->getUser();
